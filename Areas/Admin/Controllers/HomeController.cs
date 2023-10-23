@@ -4,9 +4,31 @@ namespace QuanLySinhVien.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("/quan-tri-vien")]
+
     public class HomeController : Controller
     {
-        [Route("danh-sach")]
+        //private readonly QuanLySinhVienContext _context;
+        //public HomeController(QuanLySinhVienContext context)
+        //{
+            //_context = context;
+        //}
+        //[Route("danh-sach")]
+        //public IActionResult Index(string? timkiem)
+        //{
+        //    var items = _context.Khoas.Where(c => c.Filter.Contains((timkiem ?? "").ToLower())).ToList();
+        //    return View(items);
+
+        //    if (String.IsNullOrWhiteSpace(timkiem))
+        //    {
+        //        var items1 = _context.Khoas.ToList();
+        //        return View(items1);
+        //    }
+        //    else
+        //    {
+        //        var items2 = _context.Khoas.Where(c => c.Filter.Contains(timkiem)).ToList();
+        //        return View(items2);
+        //    }
+        //}
         public IActionResult Index()
         {
             return View();
