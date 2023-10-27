@@ -30,6 +30,9 @@ namespace QuanLySinhVien.Migrations
                     b.Property<string>("Filter")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal?>("KinhPhi")
                         .HasColumnType("money");
 

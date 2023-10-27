@@ -1,22 +1,77 @@
-﻿<!-- Spinner Start -->
+﻿@model IEnumerable<QuanLySinhVien.Models.Entity.Khoa>
+@{
+    ViewData["Title"] = "UserKhoa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-striped overflow-scroll">
+    <thead>
+        <tr class="text-center">
+            <th scope="col">STT</th>
+            <th scope="col">Ảnh đại diện</th>
+            <th scope="col">Mã sản phẩm</th>
+            <th scope="col">Chủng loại</th>
+            <th scope="col">Ghi chú</th>
+            @* <th scope="col">Trạng thái</th> *@
+            @* <th scope="col">Thao tác</th> *@
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            int i = 0;
+            foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td class="text-center">@i</td>
+                    <td class="text-center">
+                        <img style="width: 50px; height: 50px;" src="@item.UrlImage" />
+                    </td>
+                    <td class="text-center">@item.MaKhoa</td>
+                    <td class="text-center">@item.TenKhoa</td>
+                    <td class="text-center">@item.Sdt</td>
+                    @* <td class="text-center @((bool)item.IsActive ? "text-success" : "text-danger")">
+            @((bool)item.IsActive ? "Kích hoạt" : "Tạm khóa")
+            </td> *@
+@*                     <td class="text-center">
+                        <a class="px-2" href="@Url.Action("Xoa", "Khoa", new { id = item.Id })">
+
+                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                        </a>
+                        <a class="px-2" href="@Url.Action("CapNhat", "Khoa", new { id = item.Id})">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </td> *@
+                </tr>
+            }
+        }
+        else
+        {
+            <caption>
+                Không có dữ liệu
+            </caption>
+        }
+    </tbody>
+</table>
+<!-- Spinner Start -->
 <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
 	<div class="spinner-border text-primary" role="status"></div>
 </div>
 <!-- Spinner End -->
 <!-- Navbar Start -->
 @*<div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
-          <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
-            <div class="col-lg-6 px-5 text-start">
-                <small><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</small>
-                <small class="ms-4"><i class="fa fa-envelope me-2"></i>info@example.com</small>
-            </div>
-            <div class="col-lg-6 px-5 text-end">
-                <small>Follow us:</small>
-                <a class="text-body ms-3" href=""><i class="fab fa-facebook-f"></i></a>
-                <a class="text-body ms-3" href=""><i class="fab fa-twitter"></i></a>
-                <a class="text-body ms-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                <a class="text-body ms-3" href=""><i class="fab fa-instagram"></i></a>
-            </div>
+		  <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
+			<div class="col-lg-6 px-5 text-start">
+				<small><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</small>
+				<small class="ms-4"><i class="fa fa-envelope me-2"></i>info@example.com</small>
+			</div>
+			<div class="col-lg-6 px-5 text-end">
+				<small>Follow us:</small>
+				<a class="text-body ms-3" href=""><i class="fab fa-facebook-f"></i></a>
+				<a class="text-body ms-3" href=""><i class="fab fa-twitter"></i></a>
+				<a class="text-body ms-3" href=""><i class="fab fa-linkedin-in"></i></a>
+				<a class="text-body ms-3" href=""><i class="fab fa-instagram"></i></a>
+			</div>
 </div> *@
 
 
@@ -848,3 +903,6 @@
 <!-- Footer End -->
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+

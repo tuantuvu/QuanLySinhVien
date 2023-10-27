@@ -12,8 +12,8 @@ using QuanLySinhVien.Models.Entity;
 namespace QuanLySinhVien.Migrations
 {
     [DbContext(typeof(QuanLySinhVienContext))]
-    [Migration("20231016104930_init")]
-    partial class init
+    [Migration("20231026112413_UpdateGhiChu_DeTai")]
+    partial class UpdateGhiChu_DeTai
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,9 @@ namespace QuanLySinhVien.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Filter")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GhiChu")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("KinhPhi")
@@ -139,6 +142,9 @@ namespace QuanLySinhVien.Migrations
                     b.Property<string>("TenKhoa")
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("UrlImage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

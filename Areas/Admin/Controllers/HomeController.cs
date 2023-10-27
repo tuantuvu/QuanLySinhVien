@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Common.Utilities;
+using Microsoft.AspNetCore.Mvc;
+using QuanLySinhVien.Common;
+using QuanLySinhVien.Models.Entity;
 
 namespace QuanLySinhVien.Areas.Admin.Controllers
 {
@@ -10,9 +13,9 @@ namespace QuanLySinhVien.Areas.Admin.Controllers
         //private readonly QuanLySinhVienContext _context;
         //public HomeController(QuanLySinhVienContext context)
         //{
-            //_context = context;
+        //    _context = context;
         //}
-        //[Route("danh-sach")]
+        ////[Route("danh-sach")]
         //public IActionResult Index(string? timkiem)
         //{
         //    var items = _context.Khoas.Where(c => c.Filter.Contains((timkiem ?? "").ToLower())).ToList();

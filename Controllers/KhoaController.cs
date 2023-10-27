@@ -1,7 +1,9 @@
 ﻿using Common.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuanLySinhVien.Common;
 using QuanLySinhVien.Models.Entity;
+using System.Net.WebSockets;
 
 namespace QuanLySinhVien.Controllers
 {
@@ -16,8 +18,8 @@ namespace QuanLySinhVien.Controllers
         [Route("danh-sach")]
         public IActionResult Index(string? timkiem)
         {
-            var items = _context.Khoas.Where(c => c.Filter.Contains((timkiem ?? "").ToLower())).ToList();
-            return View(items);
+            //var items = _context.Khoas.Where(c => c.Filter.Contains((timkiem ?? "").ToLower())).ToList();
+            //return View(items);
 
             if (String.IsNullOrWhiteSpace(timkiem))
             {
@@ -58,13 +60,17 @@ namespace QuanLySinhVien.Controllers
             }
             return View();
         }
+
+        [Route("cap-nhat")]
         public IActionResult CapNhat(string id)
         {
             var item = _context.Khoas.FirstOrDefault(x => x.Id == id);
             return View(item);
         }
+
+        [Route("cap-nhat")]
         [HttpPost]
-        public IActionResult CapNhat(string id, string makhoa, string tenkhoa, string sodienthoai)
+        public IActionResult CapNhat(string id, string? makhoa, string tenkhoa, string sodienthoai)
         {
             var item = _context.Khoas.FirstOrDefault(x => x.Id == id);
             item.MaKhoa = makhoa;
@@ -74,19 +80,16 @@ namespace QuanLySinhVien.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
         [Route("xoa-khoa")]
         public IActionResult Xoa(string id)
         {
             var item = _context.Khoas.FirstOrDefault(x => x.Id == id);
-
             bool check = UploadFiles.RemoveImage(item.UrlImage);
-
-            if (check)
-            {
+           {
                 _context.Remove(item);
                 _context.SaveChanges();
-            }
-
+           }
             return RedirectToAction("Index");
         }
     }
