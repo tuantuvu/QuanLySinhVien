@@ -1,5 +1,5 @@
 ﻿
-
+@model QuanLySinhVien.Models.ChungLoai.InputChungLoai
 @{
     ViewData["Title"] = "Them";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -11,23 +11,26 @@
         <hr />
         <form action="/quan-ly-khoa/them-khoa" method="post" enctype="multipart/form-data">
             <div class="mb-4">
-                <label for="makhoa" class="form-label fw-bolder">Mã sản phẩm</label>
-                <input type="text" class="form-control" id="makhoa" name="makhoa" value="" aria-describedby="text">
+                <div asp-validation-summary="All"class="text-danger"></div>
+                <label asp-for="MaKhoa" class="form-label fw-bolder">Mã sản phẩm</label>
+                <input asp-for="MaKhoa" type="text" class="form-control" id="makhoa" value="" aria-describedby="text">
+                <span asp-validation-for="MaKhoa" class="text-danger"></span>
             </div>
             <div class="mb-4">
-                <label for="tenkhoa" class="form-label fw-bolder">Tên sản phẩm</label>
-                <input type="text" class="form-control" id="tenkhoa" name="tenkhoa" value="" aria-describedby="text">
+                <label asp-for="TenKhoa" class="form-label fw-bolder">Tên sản phẩm</label>
+                <input asp-for="TenKhoa" type="text" class="form-control" id="tenkhoa" value="" aria-describedby="text">
+                <span asp-validation-for="TenKhoa" class="text-danger"></span>
             </div>
             <div class="mb-4">
-                <label for="sodienthoai" class="form-label fw-bolder">Chủng loại</label>
-                <input type="number" class="form-control" id="sodienthoai" name="sodienthoai" min="0" value="" aria-describedby="text">
+                <label asp-for="Sdt" class="form-label fw-bolder">Chủng loại</label>
+                <input asp-for="Sdt" type="number" class="form-control" id="sdt" min="0" value="" aria-describedby="text">
             </div>
             <div class="mb-4">
-                <label for="hinhanh" class="form-label fw-bolder">Ảnh đại diện</label>
+                <label asp-for="hinhanh" class="form-label fw-bolder">Ảnh đại diện</label>
                 <div class="d-flex justify-content-center align-items-center py-2">
                     <img id="showimage" style="width: 450px; height: 300px;" src="~/images/noimage.jpg" alt="..." />
                 </div>
-                <input type="file" class="form-control" id="hinhanh" name="hinhanh" onchange="readURL(this)" aria-describedby="image">
+                <input asp-for="hinhanh" type="file" class="form-control" id="hinhanh" onchange="readURL(this)" aria-describedby="image">
             </div>
             <hr />
             <div class="d-flex align-items-center justify-content-center my-5 gap-5">

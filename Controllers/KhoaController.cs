@@ -1,7 +1,9 @@
 ﻿using Common.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using QuanLySinhVien.Common;
+using QuanLySinhVien.Models.ChungLoai;
 using QuanLySinhVien.Models.Entity;
 using System.Net.WebSockets;
 
@@ -39,27 +41,48 @@ namespace QuanLySinhVien.Controllers
         }
         [Route("them-khoa")]
         [HttpPost]
-        public IActionResult Them(string makhoa, string tenkhoa, string sodienthoai, IFormFile hinhanh)
+        public IActionResult Them( InputChungLoai input)
         {
-            //tạo Guid
-            //Guid id = Guid.NewGuid();
-            if (!string.IsNullOrEmpty(makhoa))
+            if (ModelState.IsValid)
             {
                 Khoa khoa = new Khoa();
                 khoa.Id = Guid.NewGuid().ToString();
-                khoa.MaKhoa = makhoa;
-                khoa.TenKhoa = tenkhoa;
-                khoa.Sdt = sodienthoai;
-                //khoa.Filter = makhoa + " " + tenkhoa.ToLower() + " " + Utility.ConvertToUnsign(tenkhoa.ToLower()) + " " + sodienthoai;
-                //khoa.UrlImage = UploadFiles.SaveImage(hinhanh);
+                khoa.MaKhoa = input.MaKhoa;
+                khoa.TenKhoa = input.TenKhoa;
+                khoa.Sdt = input.Sdt;
+                khoa.Filter = input.MaKhoa + " " + input.TenKhoa.ToLower() + " " + Utility.ConvertToUnsign(input.TenKhoa.ToLower()) + " " + input.Sdt;
+                khoa.UrlImage = UploadFiles.SaveImage(input.hinhanh);
 
                 _context.Add(khoa);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
-                //return Redirect("/Khoa/Index");
             }
-            return View();
-        }
+        return View();
+
+    }
+        //[Route("them-khoa")]
+        //[HttpPost]
+        //public IActionResult Them(string makhoa, string tenkhoa, string sodienthoai, IFormFile hinhanh)
+        //{
+        //    //tạo Guid
+        //    //Guid id = Guid.NewGuid();
+        //    if (!string.IsNullOrEmpty(makhoa))
+        //    {
+        //        Khoa khoa = new Khoa();
+        //        khoa.Id = Guid.NewGuid().ToString();
+        //        khoa.MaKhoa = makhoa;
+        //        khoa.TenKhoa = tenkhoa;
+        //        khoa.Sdt = sodienthoai;
+        //        khoa.Filter = makhoa + " " + tenkhoa.ToLower() + " " + Utility.ConvertToUnsign(tenkhoa.ToLower()) + " " + sodienthoai;
+        //        khoa.UrlImage = UploadFiles.SaveImage(hinhanh);
+
+        //        _context.Add(khoa);
+        //        _context.SaveChanges();
+        //        return RedirectToAction("Index");
+        //        //return Redirect("/Khoa/Index");
+        //    }
+        //    return View();
+        //}
 
         [Route("cap-nhat")]
         public IActionResult CapNhat(string id)
