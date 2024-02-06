@@ -8,11 +8,11 @@ namespace QuanLySinhVien.Models.ChungLoai
     {
         [Required(ErrorMessage = "Mã Sản Phẩm Không được phép để trống!")]
         public string MaKhoa { get; set; }
-        [Required(ErrorMessage = "Tên Sản Phẩm sKhông được phép để trống!")]
+        [Required(ErrorMessage = "Tên Sản Phẩm Không được phép để trống!")]
 
         public string TenKhoa { get; set; }
 
         public string? Sdt { get; set; }
-        public IFormFile? hinhanh { get; set; }
+        public IFormFileCollection? hinhanh { get; set; }
     }
 }

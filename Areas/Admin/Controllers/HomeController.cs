@@ -1,10 +1,12 @@
 ﻿using Common.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuanLySinhVien.Common;
 using QuanLySinhVien.Models.Entity;
 
 namespace QuanLySinhVien.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
     [Route("/quan-tri-vien")]
 
@@ -32,6 +34,7 @@ namespace QuanLySinhVien.Areas.Admin.Controllers
         //        return View(items2);
         //    }
         //}
+        [Route("danh-sach")]
         public IActionResult Index()
         {
             return View();
